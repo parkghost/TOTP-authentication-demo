@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<beans profile="default">
+		<bean id="jedisPool" class="redis.clients.jedis.JedisPool"
+			destroy-method="destroy">
+			<constructor-arg index="0">
+				<bean class="redis.clients.jedis.JedisPoolConfig">
+					<property name="maxActive" value="${redis.maxActive}" />
+					<property name="maxIdle" value="${redis.maxIdle}" />
+				</bean>
+			</constructor-arg>
+			<constructor-arg index="1" value="${redis.host}" />
+			<constructor-arg index="2" value="${redis.port}" />
+		</bean>
+	</beans>
+
+	<beans profile="heroku">
+		<bean class="java.net.URI" id="dbUrl">
+			<constructor-arg value="${REDISTOGO_URL}" />
+		</bean>
+
+		<bean id="jedisPool" class="redis.clients.jedis.JedisPool"
+			destroy-method="destroy">
+			<constructor-arg index="0">
+				<bean class="redis.clients.jedis.JedisPoolConfig">
+					<property name="maxActive" value="10" />
+					<property name="maxIdle" value="10" />
+				</bean>
+			</constructor-arg>
+			<constructor-arg index="1" value="#{ @dbUrl.getHost() }" />
+			<constructor-arg index="2" value="#{ @dbUrl.getPort() }" />
+			<constructor-arg index="3" value="-1" />
+			<constructor-arg index="4" value="#{ @dbUrl.getUserInfo().split(':')[1] }" />
+		</bean>
+
+	</beans>
+</beans>
