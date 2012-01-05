@@ -55,12 +55,6 @@ public class AccountController {
 	@Value("${qrcode.height}")
 	private int qrcodeHeight = 400;
 
-	@Value("${totp.intervalPeriod}")
-	private int intervalPeriod = 30;
-
-	@Value("${totp.window}")
-	private int window = 3;
-
 	@Value("${totp.hostLabel}")
 	private String hostLabel = "brandonc.me";
 
@@ -110,7 +104,7 @@ public class AccountController {
 	public ResponseMessage verifyCode(@PathVariable String name, @RequestParam String password, @RequestParam long code) throws InvalidKeyException, NoSuchAlgorithmException {
 		Account account = acccountRepository.findAccountByName(name);
 
-		if (account != null && checkCode(account.getSecret(), code, getCurrentInterval(), window) && checkPassword(account, password)) {
+		if (account != null && checkCode(account.getSecret(), code) && checkPassword(account, password)) {
 			return ResponseMessage.SUCCESSED;
 		}
 
@@ -153,11 +147,6 @@ public class AccountController {
 
 	private boolean checkPassword(Account account, String password) throws NoSuchAlgorithmException, InvalidKeyException {
 		return account.getPassword().equals(encrypt(password, account.getName()));
-	}
-
-	private long getCurrentInterval() {
-		long currentTimeSeconds = System.currentTimeMillis() / 1000;
-		return currentTimeSeconds / intervalPeriod;
 	}
 
 	private String getQRBarcodeURL(String user, String host, String secret) {
