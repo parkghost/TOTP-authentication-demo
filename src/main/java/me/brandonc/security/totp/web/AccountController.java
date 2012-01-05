@@ -110,7 +110,7 @@ public class AccountController {
 	public ResponseMessage verifyCode(@PathVariable String name, @RequestParam String password, @RequestParam long code) throws InvalidKeyException, NoSuchAlgorithmException {
 		Account account = acccountRepository.findAccountByName(name);
 
-		if (account != null && checkPassword(account, password) && checkCode(account.getSecret(), code, getCurrentInterval(), window)) {
+		if (account != null && checkCode(account.getSecret(), code, getCurrentInterval(), window) && checkPassword(account, password)) {
 			return ResponseMessage.SUCCESSED;
 		}
 
