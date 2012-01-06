@@ -1,4 +1,4 @@
-TOTP authentication demo
+TOTP Authentication Demo
 =================
 
 This is a simple web application which implement Two-Factor authentication by TOTP and Google Authenticator 
@@ -8,12 +8,22 @@ Demo Site
 
 http://totp-authentication-demo.herokuapp.com/
 
-Usage
+Installation
 -----------
-	git clone git@github.com:parkghost/TOTP-authentication-demo.git
-	cd TOTP-authentication-demo
-	mvn package
-	java $JAVA_OPTS -classpath "target/totp-authentication-demo-1.0/WEB-INF/classes:target/totp-authentication-demo-1.0/WEB-INF/lib/*" me.brandonc.security.totp.core.Main target/totp-authentication-demo-1.0
+1.Redis
+
+    wget http://redis.googlecode.com/files/redis-2.4.5.tar.gz
+    tar xzf redis-2.4.5.tar.gz
+    cd redis-2.4.5
+    make
+    src/redis-server
+
+2.TOTP Authentication Demo
+
+    git clone git@github.com:parkghost/TOTP-authentication-demo.git
+    cd TOTP-authentication-demo
+    mvn package
+    java $JAVA_OPTS -jar target/dependency/jetty-runner.jar target/*.war
 
 Bug tracker
 -----------
