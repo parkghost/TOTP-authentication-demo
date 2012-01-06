@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -classpath "target/totp-authentication-demo-1.0/WEB-INF/classes:target/totp-authentication-demo-1.0/WEB-INF/lib/*" me.brandonc.security.totp.core.Main target/totp-authentication-demo-1.0
+web: java $JAVA_OPTS -jar target/dependency/jetty-runner.jar --port $PORT target/*.war
