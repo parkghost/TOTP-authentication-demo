@@ -13,7 +13,8 @@ Usage
 	git clone git@github.com:parkghost/TOTP-authentication-demo.git
 	cd TOTP-authentication-demo
 	mvn package
-	java $JAVA_OPTS -classpath "target/totp-authentication-demo-1.0/WEB-INF/classes:target/totp-authentication-demo-1.0/WEB-INF/lib/*" me.brandonc.security.totp.core.Main target/totp-authentication-demo-1.0
+	java $JAVA_OPTS -jar target/dependency/jetty-runner.jar target/*.war
+	open http://localhost:8080/
 
 Bug tracker
 -----------
