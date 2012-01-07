@@ -105,7 +105,7 @@
 		<div class="modal-footer">
 			<span class="label notice">notice</span> <span> use <a
 				href="http://support.google.com/accounts/bin/answer.py?hl=en&answer=1066447"
-				target="_blank">Google Authenticator</a> to keep your secret
+				target="_blank">Google Authenticator</a> to keep your secret key
 			</span>
 		</div>
 
