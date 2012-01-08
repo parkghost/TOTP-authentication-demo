@@ -27,8 +27,8 @@
 			destroy-method="destroy">
 			<constructor-arg index="0">
 				<bean class="redis.clients.jedis.JedisPoolConfig">
-					<property name="maxActive" value="10" />
-					<property name="maxIdle" value="10" />
+					<property name="maxActive" value="${redis.maxActive}" />
+					<property name="maxIdle" value="${redis.maxIdle}" />
 				</bean>
 			</constructor-arg>
 			<constructor-arg index="1" value="#{ @dbUrl.getHost() }" />
