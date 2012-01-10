@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.brandonc.security</groupId>
 	<artifactId>totp-authentication-demo</artifactId>
-	<version>1.0</version>
+	<version>1.1</version>
 	<packaging>war</packaging>
 	<name>TOTP authentication demo</name>
 	<url>https://github.com/parkghost/TOTP-authentication-demo</url>
