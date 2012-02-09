@@ -1,9 +1,8 @@
-<%@ page session="false"%>
-<!DOCTYPE html>
+<%@ page session="false"%><!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css"
-	href="static/css/bootstrap.min.css">
+<link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico">
+<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
 <title>TOTP authentication Demo</title>
 </head>
 <body>
