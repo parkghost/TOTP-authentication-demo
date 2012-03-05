@@ -7,7 +7,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.annotation.SuppressAjWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.NamedThreadLocal;
 
 /**
  * make one thread use one connection in the same time
@@ -16,9 +15,8 @@ import org.springframework.core.NamedThreadLocal;
 public class ConnectionManagementAspect {
 
 	private final Logger logger = LoggerFactory.getLogger(ConnectionManagementAspect.class);
-
-	ThreadLocal<Object> localConnection = new NamedThreadLocal<Object>("localConnection");
-	ThreadLocal<Integer> localEntrend = new NamedThreadLocal<Integer>("localEntrend") {
+	private static final ThreadLocal<Object> localConnection = new ThreadLocal<Object>();
+	private static final ThreadLocal<Integer> localEntrend = new ThreadLocal<Integer>() {
 		@Override
 		protected Integer initialValue() {
 			return 0;
@@ -46,7 +44,7 @@ public class ConnectionManagementAspect {
 			logger.trace("use cached resource");
 		}
 
-		localEntrend.set(localEntrend.get().intValue() + 1);
+		localEntrend.set(localEntrend.get() + 1);
 		return connection;
 	}
 
@@ -54,8 +52,9 @@ public class ConnectionManagementAspect {
 	@Around("call(* redis.clients.util.Pool.returnResource(..)) && args(resource) && inRepository()")
 	public void releaseResource(ProceedingJoinPoint pjp, Object resource) {
 
-		int entrend = localEntrend.get().intValue();
-		if (--entrend == 0) {
+		int entrend = localEntrend.get();
+		entrend--;
+		if (entrend == 0) {
 			try {
 				logger.trace("remove cached resource");
 				pjp.proceed(new Object[] { resource });
