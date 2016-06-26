@@ -15,7 +15,7 @@ public class TOTPUtils {
 
 	private static final int INTERVAL = 30;
 
-	private static final int WINDOW = 30;
+	private static final int WINDOW = 3;
 
 	private static final String CRYPTO = "HmacSHA1";
 
