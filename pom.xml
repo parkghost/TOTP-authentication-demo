@@ -10,7 +10,7 @@
 
 	<properties>
 		<spring.version>3.1.0.RELEASE</spring.version>
-		<aspectj.version>1.6.12</aspectj.version>
+		<aspectj.version>1.8.9</aspectj.version>
 		<slf4j.version>1.6.1</slf4j.version>
 		<jetty.version>8.1.0.RC2</jetty.version>
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
@@ -101,12 +101,12 @@
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>core</artifactId>
-			<version>1.6</version>
+			<version>3.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
-			<version>1.6</version>
+			<version>3.2.1</version>
 		</dependency>
 
 		<!-- Utilities -->
