@@ -9,7 +9,7 @@
 	<url>https://github.com/parkghost/TOTP-authentication-demo</url>
 
 	<properties>
-		<spring.version>3.1.0.RELEASE</spring.version>
+		<spring.version>5.3.18</spring.version>
 		<aspectj.version>1.8.9</aspectj.version>
 		<slf4j.version>1.6.1</slf4j.version>
 		<jetty.version>8.1.0.RC2</jetty.version>
